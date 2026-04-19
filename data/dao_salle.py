@@ -57,6 +57,24 @@ class DataSalle:
          cursor.close()
          con.close()
 
+     def get_salle(self, code):
+         con = self.get_connection()
+         cursor = con.cursor()
+
+         cursor.execute(
+             "SELECT * FROM salle WHERE code=%s",
+             (code,)
+         )
+
+         row = cursor.fetchone()
+
+         cursor.close()
+         con.close()
+
+         if row is not None:
+             return Salle(row[0], row[1], row[2], row[3])
+         return None
+
 
 
 
