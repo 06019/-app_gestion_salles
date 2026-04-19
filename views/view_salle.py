@@ -62,3 +62,9 @@ class ViewSalle(ctk.CTk):
 
         self.service_salle.ajouter_salle(salle)
 
+    def supprimer_salle(self):
+        code = self.txtCode.get()
+        self.service_salle.supprimer_salle(code)
+
+
+
