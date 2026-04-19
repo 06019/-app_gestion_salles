@@ -76,4 +76,17 @@ class ViewSalle(ctk.CTk):
         )
 
         self.service_salle.modifier_salle(salle)
+    def rechercher_salle(self):
+        code = self.txtCode.get()
+        salle = self.service_salle.rechercher_salle(code)
+
+        if salle is not None:
+            self.txtLibelle.delete(0, "end")
+            self.txtLibelle.insert(0, salle.libelle)
+
+            self.txtType.delete(0, "end")
+            self.txtType.insert(0, salle.type)
+
+            self.txtCapacite.delete(0, "end")
+            self.txtCapacite.insert(0, salle.capacite)
 
