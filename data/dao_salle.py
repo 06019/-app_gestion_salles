@@ -2,7 +2,7 @@ import json
 import mysql.connector
 from models.salle import Salle
 
- class DataSalle:
+class DataSalle:
      def get_connection(self):
          with open("config.json", "r",encoding="utf-8") as f:
              config = json.load(f)
@@ -13,3 +13,22 @@ from models.salle import Salle
              database=config["database"]
          )
          return con
+
+     def insert_salle(self, salle):
+         con = self.get_connection()
+         cursor = con.cursor()
+         cursor.execute(
+
+             "insert into salle values(%s,%s,%s,%s)",
+             (salle.code, salle.libelle, salle.type, salle.capacite)
+
+         )
+
+         con.commit()
+         cursor.close()
+         con.close()
+
+
+
+
+
